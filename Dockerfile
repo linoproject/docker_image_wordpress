@@ -1,10 +1,10 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER Lino Telera Linoproject.net <linotelera@gmail.com>
 
 ENV WP_LOCALE="it_IT"
 ENV DB_NAME="wordpress"
 ENV DB_ROOT_USER="root"
-ENV DB_ROOT_PWD=""
+ENV DB_ROOT_PWD="MyS3cr901Pw327!"
 ENV WP_IPFDQN="127.0.0.1"
 ENV WP_TITLE="wordpress"
 ENV WP_ADMIN_USER="admin"
@@ -21,7 +21,7 @@ RUN apt-get update && \
         php-mysql \
         php-gd \
         php-curl \
-        php-mcrypt \
+        #php-mcrypt \
         mysql-server \
         mysql-client \
         php-pear \
@@ -39,7 +39,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 RUN sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
 
-RUN phpenmod mcrypt
+#RUN phpenmod mcrypt
 
 RUN usermod -u 33 www-data
 
